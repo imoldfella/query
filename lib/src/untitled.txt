@@ -1,0 +1,32 @@
+
+
+
+
+// basically ship the observer delta to the webview
+// this is a post in webview (cross thread), call in web (same thread)
+interface {
+
+    }
+
+_update() {
+  web.post( _observer.delta.toJson() )
+
+  }
+
+  // typescript:
+
+  interface ListDelta {
+    replace: Replace[]
+    anchor?
+    }
+
+   interface CanvasDelta {
+       remove: Removal[] // { index, html+ animation }
+       add: Insertion[] // { index, html +animation }
+       }
+
+html has data-some-event data-id
+ 
+ callback( canvasid, data-id, event, event-info)
+
+
