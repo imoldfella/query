@@ -4,10 +4,14 @@ import 'dart:typed_data';
 import '../platform/platform.dart';
 import 'package:archive/archive_io.dart';
 
-// file is pipe delimited.
-//
+// mostly we are indexing files in a directory, but we also want to index csv's by row as if each row is a document. or maybe a yaml that lists the csv's
+// schema because two attributes could have the same name, but not really be the same field.
 
 // we need to be able to split the output into fixed lengths to accomodate static host limitations.
+// in the end we need to:
+// 1. assign every document an id and create a giant document vector
+// 2. create an inverted index to all the terms
+// we want to do more analysis on the documents that we download.
 
 
 class IndexNode {
