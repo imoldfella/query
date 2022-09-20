@@ -1,17 +1,5 @@
 # Search query parser library
-tabstyle {
-  sql: ''
-  }
 
-spreadsheet:
-  create table (id, tab, tabstyle)
-  create table cell (id, tab, key, variant)  #key=rowId+colId
-  create table float (id, tab, row, offset , variant)
-
-document:
-  
-
-dirty reads allows reading uncommitted transactions. Transactions are only 
 
 
 
@@ -35,6 +23,12 @@ A simple usage example:
 
 ```dart
 import 'package:query/query.dart';
+
+
+dart2js --minify -o=app.dart.js app.dart
+
+
+
 
 main() {
   final q = parseQuery('some text OR field:another');
