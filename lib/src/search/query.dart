@@ -1,7 +1,7 @@
-import 'src/ast.dart';
-import 'src/grammar.dart';
+import 'ast.dart';
+import 'grammar.dart';
 
-export 'src/ast.dart';
+export 'ast.dart';
 
 final _parser = QueryGrammarDefinition().build<Query>();
 

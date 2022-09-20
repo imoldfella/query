@@ -17,15 +17,6 @@ class Tuple {
   Tuple(this.table);
 }
 
-class OrNode {}
-
-class AndNode {}
-
-// finds
-class NotNode {
-  //
-}
-
 abstract class ReadCloser {
   Future<Uint8List> read(int at, int count);
   void close();
@@ -84,29 +75,5 @@ class Index {
   }
 }
 
-// we probably stay logged in locally but 
-class Db {
-  static Db open( ){
-  }
-  final index = IndexWriter();
-
-  
-  write(Index i, Tuple o) {}
-  commit(List<Tuple> t) {
-    for (final o in t) {
-      for (final i in o.table.index) {
-        write(i, o);
-      }
-    }
-  }
-}
-
-
-class Datagrove {
-
-
-  Datagrove openUser(Auth,{
-    }) async {
-    return Datagrove();
-  }
-}
+// we probably stay logged in locally but
+// we need to do the authorization outside and pass in the file system and network connection

@@ -1,4 +1,4 @@
-import 'package:query/query.dart';
+import 'package:query/src/search/query.dart';
 import 'package:test/test.dart';
 import 'package:test/test.dart' as t;
 
