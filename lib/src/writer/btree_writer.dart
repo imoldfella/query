@@ -21,7 +21,9 @@ class IndexNode {
     size=0;
   }
   Uint8List toBytes() {
+    final b = BytesBuilder();
     
+    return b.toBytes();
   }
   int add(Uint8List k, int p) {
     key.add(k);
