@@ -2,6 +2,7 @@ import 'dart:isolate';
 import 'dart:math';
 
 // how can we let jobs send jobs to other threads?
+import 'worker.dart';
 
 class JobberPort<T> {
   // send something
@@ -11,20 +12,16 @@ class JobberPort<T> {
   void error(Error e) {}
 }
 
-// we
-void exampleWorkerMain(SendPort p) {
-  var x = new Worker(p);
-}
-
-// probably cannot be a closure?
-typedef WorkerFn = Future<void> Function(SendPort p);
-
 class Jobber {
   static Jobber g = Jobber();
   List<Isolate> iso = [];
   final r = Random();
   SendPort get randomWorker => iso[r.nextInt(iso.length)].controlPort;
 
+  Jobber(
+    WorkerFn _worker, {
+    int? cores,
+  }) {}
   static void start(int count, WorkerFn _worker) async {
     // this has to be shimmed to the web.
     final v = <Isolate>[];

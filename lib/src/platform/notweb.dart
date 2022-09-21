@@ -6,6 +6,10 @@ import 'package:file/local.dart' as lfs;
 import 'package:file/file.dart' as fs;
 import 'types.dart';
 
+int numCores() {
+  return Platform.numberOfProcessors;
+}
+
 fs.FileSystem getFs() {
   return const lfs.LocalFileSystem();
 }
