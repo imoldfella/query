@@ -9,6 +9,7 @@ import 'io.dart'
 
 export 'io.dart';
 export 'types.dart';
+export 'jobber.dart';
 
 class Fs {
   late FileSystem fs;

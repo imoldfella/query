@@ -26,8 +26,8 @@ Uint8List u8(String s) => Uint8List.fromList(
 // read the root, read the data as a split file.
 class BtreeReader {
   // read these from the root block
-  int pageSize =0;
-  int fileSize = 0; 
+  int pageSize = 0;
+  int fileSize = 0;
   Uri uri;
   BtreeReader(this.uri);
   Uint8List root = Uint8List(0);
@@ -60,7 +60,7 @@ class Cursor {
   Uint8List? to;
   int max = -1;
   final buffer = Uint8List(kPageSize);
-  int tellg;
+  int tellg = 0;
 
   Cursor({required this.reader, required this.from, this.to, this.max = -1});
 
@@ -72,7 +72,7 @@ class Cursor {
 
   more() {
     tellg += kPageSize;
-    final fn = tellg
+    final fn = tellg;
   }
 
   FutureOr<bool> get valid async {

@@ -1,10 +1,6 @@
-# Search query parser library
+# this is a search engine for datagrove.
+The query parser is forked from https://github.com/isoos/query
 
-
-
-
-The library helps to parse search queries (e.g. custom search boxes)
-and enables custom search index implementations.
 
 Supported expressions:
 

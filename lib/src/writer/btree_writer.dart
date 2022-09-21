@@ -13,22 +13,23 @@ import 'package:archive/archive_io.dart';
 // 2. create an inverted index to all the terms
 // we want to do more analysis on the documents that we download.
 
-
 class IndexNode {
   List<Uint8List> key = [];
-  List<int> pointer=[];
-  int size=0;
+  List<int> pointer = [];
+  int size = 0;
 
-  void clear(){
-    key=[];
-    pointer= [];
-    size=0;
+  void clear() {
+    key = [];
+    pointer = [];
+    size = 0;
   }
+
   Uint8List toBytes() {
     final b = BytesBuilder();
-    
+
     return b.toBytes();
   }
+
   int add(Uint8List k, int p) {
     key.add(k);
     pointer.add(p);
@@ -59,21 +60,20 @@ class CompressedWriter {
   void add(Uint8List line, int level, int pointer) {
     // we only care about the key
     final key = line.sublist(0, line.indexOf(124));
-    if (stack[level].add(key,pointer)>pageSize) {
-      if (level+1==stack.length ){
+    if (stack[level].add(key, pointer) > pageSize) {
+      if (level + 1 == stack.length) {
         stack.add(IndexNode());
       }
       // write the node
-      add(stack[level].key[0],level+1, ptr);
+      //add(stack[level].key[0],level+1, ptr);
 
       stack[level].clear();
     }
-    
   }
 
   int write(Uint8List data) {
-    if (remain < data.length){
-      writer = output.create("Data$nextFile"); 
+    if (remain < data.length) {
+      // writer = output.create("Data$nextFile");
       remain = fileSize;
       nextFile += fileSize;
     }
@@ -83,6 +83,7 @@ class CompressedWriter {
     remain -= data.length;
     return pos;
   }
+
   Future<void> build() async {
     final buffer = Uint8List(pageSize);
     final z = ZLibEncoder();
@@ -104,12 +105,11 @@ class CompressedWriter {
         b.add(buffer.sublist(0, pos));
       }
       final nd = b.toBytes();
-      
+
       final compressed = Uint8List.fromList(z.encode(nd));
       b.clear();
       final ptr = write(compressed);
       add(nd, 0, ptr);
-
 
       // if there is not enough room, start a new file
       // logically pad the file per the pointers.
@@ -118,15 +118,12 @@ class CompressedWriter {
 
       // copy the remaining bytes to the beginning of the buffer
 
-    
-    while (n == pageSize) {
-
+      while (n == pageSize) {}
     }
+
+    var compressTo = Uint8List(64 * 1024);
   }
-
-  var compressTo = Uint8List(64 * 1024);
 }
-
 // Pack the leaves first, (dart compression?) then write the index nodes.
 
 //
