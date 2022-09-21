@@ -34,7 +34,7 @@ class Batch {
 
   Batch(this.w);
 
-  void doc(Uint8List doc) {
+  void doc(Uint8List doc,Uint8List id) {
     next++;
   }
 

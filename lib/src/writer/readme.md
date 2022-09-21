@@ -10,7 +10,10 @@ term->
 [pos]
 
 there is another tradeoff problem: the pos vector is compressed, the startPos is compressed. 
-two start bytes are not strictly a count by subtracting. but its a pretty good estimate probably?
+two start bytes are not strictly a count by subtracting. but its a pretty good estimate probably? 
+
+we need id for replacement/upsert.
+
 
 what about packing everything with the document except the basic term->docid?
 maybe a weight.
