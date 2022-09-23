@@ -32,3 +32,8 @@ main() {
   print(q);
 }
 ```
+
+
+dart2js --minify -o=app.dart.js app.dart
+
+If you use pub build (a streamlined build process for pub package and apps), it defaults to minifying. Yay!

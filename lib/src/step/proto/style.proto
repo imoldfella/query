@@ -1,0 +1,6 @@
+syntax = "proto3";
+package step;
+
+message Style {
+    int64 id=1;
+}

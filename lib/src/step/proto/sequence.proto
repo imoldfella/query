@@ -1,0 +1,16 @@
+
+syntax = "proto3";
+package tutorial;
+
+// protoc sequence.proto --dart_out=./gen
+message Sequence {
+    repeated double id = 1;
+    double next = 2;
+}
+
+// delete[start,end), then insert before start count new ids.
+message SequenceStep {
+    int32 start = 1;
+    int32 end = 2;
+    int32 count = 3;
+}

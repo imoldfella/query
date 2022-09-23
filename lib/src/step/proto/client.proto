@@ -1,0 +1,56 @@
+
+ 
+ 
+syntax = "proto3";
+package data;
+ 
+message  Push {
+   oneof x {
+       Write write = 1;
+       Open open = 2;
+       Close close = 3;
+   }
+}
+
+message Pull {
+   oneof x {
+       Read read = 1;
+   }
+}
+ 
+message Connect {
+   int32 protocol =1;
+   bytes publicKey = 2;
+   int64 lsn =3;
+   bytes signature = 4;   
+}
+
+
+message Write {
+       int32 handle = 1;
+       int64 version = 2;
+       bytes data = 4;
+}
+message Open {
+   int64 tag = 1;
+   string path = 2;
+   bytes signature = 3;
+}
+message OpenReply {
+   int64 tag = 1;
+   int32 handle = 2;
+}
+message Close {
+   int32 handle = 1;
+}
+message Read {
+   int32 handle = 1;
+   int64 version = 2;
+   repeated bytes data = 3;
+}
+ 
+message Cipher {
+   int32 stepType = 1;
+   bytes value = 2;  // steps.
+}
+ 
