@@ -2,7 +2,7 @@ import 'dart:isolate';
 import 'dart:math';
 
 // how can we let jobs send jobs to other threads?
-import 'worker.dart';
+import '../common_worker.dart';
 
 class JobberPort<T> {
   // send something
@@ -12,35 +12,20 @@ class JobberPort<T> {
   void error(Error e) {}
 }
 
-class Jobber {
-  static Jobber g = Jobber();
-  List<Isolate> iso = [];
+abstract class Jobber {
   final r = Random();
-  SendPort get randomWorker => iso[r.nextInt(iso.length)].controlPort;
+  int length = 0;
 
-  Jobber(
-    WorkerFn _worker, {
-    int? cores,
-  }) {}
-  static void start(int count, WorkerFn _worker) async {
-    // this has to be shimmed to the web.
-    final v = <Isolate>[];
-    for (int i = 0; i < count; i++) {
-      final p = ReceivePort();
-      final o = await Isolate.spawn<SendPort>(_worker, p.sendPort);
-      v.add(o);
-    }
-  }
+  send(Object o);
 
-  static void add<T, P>(
-      String name, void Function(T, JobberPort<P> os) runner) {}
+  void add<T, P>(String name, void Function(T, JobberPort<P> os) runner) {}
 
-  static Future<List<Object?>> runAll(String name,
+  Future<List<Object?>> runAll(String name,
       {Object? Function(Object?)? monitor, List<Object?>? params}) async {
     return [];
   }
 
-  static Future<Object?> run(String name, Object? params,
+  Future<Object?> run(String name, Object? params,
       {Object? Function(Object?)? monitor}) async {
     return null;
   }
