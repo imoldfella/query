@@ -11,6 +11,7 @@ environment:
 dependencies:
   archive: ^3.3.1
   bitcount: ^0.3.0
+  dcli: ^1.34.0
   fs_shim: ^2.0.3
   http: ^0.13.5
   petitparser: ^5.0.0

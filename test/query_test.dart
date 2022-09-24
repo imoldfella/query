@@ -2,6 +2,12 @@ import 'package:query/src/search/query.dart';
 import 'package:test/test.dart';
 import 'package:test/test.dart' as t;
 
+void nt1() {
+  final q = parseQuery('some text OR field:another');
+  // prints "(some (text OR field:another))"
+  print(q);
+}
+
 extension<T extends Query> on T {
   R expect<R extends Query>(String matcher, int start, int end) {
     t.expect(runtimeType, R);
