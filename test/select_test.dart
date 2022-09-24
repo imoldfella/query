@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:collection/collection.dart';
-import 'package:elias_fano/elias_fano.dart';
+import 'package:query/src/ef/elias_fano.dart';
 
 void main() {
   final n = 1000;

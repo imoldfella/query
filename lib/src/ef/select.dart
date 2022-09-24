@@ -82,7 +82,7 @@ extension Bitops on Uint32List {
     return 0;
   }
 
-  select0(int i) {
+  int select0(int i) {
     for (var j = 0; j < length; j++) {
       int xorOp = (-1 ^ this[j]) & 0xFFFFFFFF;
       int zeros = xorOp.bitCount();

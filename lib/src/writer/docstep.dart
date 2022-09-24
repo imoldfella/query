@@ -16,7 +16,7 @@ void workerMain() {
 class PostingList {
   int index;
   List<String> terms;
-  PostingList(this.docid, this.terms);
+  PostingList(this.index, this.terms);
 }
 
 class FileInput {
@@ -41,15 +41,15 @@ class FileAnalyzer {
   }
 
   FileAnalyser() {
-    add("csv", _csv);
+    // add("csv", _csv);
 
-    Jobber.add('importFile', (FileSystemEntity fe, JobberPort<PostingList> os) {
-      os
-        ..produce(PostingList(
-          0,
-        ))
-        ..complete();
-    });
+    // Jobber.add('importFile', (FileSystemEntity fe, JobberPort<PostingList> os) {
+    //   os
+    //     ..produce(PostingList(
+    //       0,
+    //     ))
+    //     ..complete();
+    // });
   }
 
   static FileAnalyzer? g;

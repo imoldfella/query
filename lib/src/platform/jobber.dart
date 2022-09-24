@@ -16,7 +16,7 @@ abstract class Jobber {
   final r = Random();
   int length = 0;
 
-  send(Object o);
+  send(int index, Object o);
 
   void add<T, P>(String name, void Function(T, JobberPort<P> os) runner) {}
 
@@ -42,7 +42,7 @@ class JobberWaitGroup {
 }
 
 class WorkPool<T> {
-  Jobber j;
+  Jobber? j;
   String name;
 
   // doesn't return  anything immediately, we want this to work like a
@@ -51,14 +51,14 @@ class WorkPool<T> {
   void run<T, Chunk>(String name, {Chunk? object}) {
     // we can pick a queue randomly.
     // we can send them a null to tell them no more.
-    j.randomWorker.send(Job(name, object));
+    //j.randomWorker.send(Job(name, object));
   }
 
   WorkPool(
     this.name, {
     Jobber? jobber,
     List<Object?>? init,
-  }) : j = jobber ?? Jobber.g {
+  }) {
     // we need to start a hypervariable in in all the isolates that they will use to accumulate results.
 
     //initAll(j.next, this.name, params)
